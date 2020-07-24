@@ -3,9 +3,9 @@ using TuroPhoto.PhotoLibraryCatalog.Model;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Infrastructure.Repository
 {
-    interface IAlbumIndexRepository
+    interface ITuroPhotoRepository
     {
-        void Insert(AlbumIndex albumIndex);
+        void Insert(LibraryCatalog catalog);
         void Save();
         Exception TrySave();
     }

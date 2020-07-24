@@ -40,7 +40,7 @@ namespace TuroPhoto.PhotoLibraryCatalog
                 var servicesProvider = BuildDi(config);
                 using (servicesProvider as IDisposable)
                 {
-                    var runner = servicesProvider.GetRequiredService<IndexAlbumController>();
+                    var runner = servicesProvider.GetRequiredService<LibraryCatalogController>();
 
                     runner.InitConfiguration(directories);
 
@@ -66,9 +66,9 @@ namespace TuroPhoto.PhotoLibraryCatalog
         private static IServiceProvider BuildDi(IConfiguration config)
         {
             return new ServiceCollection()
-                .AddTransient<IndexAlbumController>() // Runner is the custom class
-                .AddTransient<IndexAlbumView>()
-                .AddTransient<IPhotoDirectoryCrawler, PhotoDirectoryCrawler>()
+                .AddTransient<LibraryCatalogController>() // Runner is the custom class
+                .AddTransient<LibraryCatalogView>()
+                .AddTransient<IPhotoLibraryCrawler, PhotoLibraryCrawler>()
                 .AddLogging(loggingBuilder =>
                 {
                     // configure Logging with NLog
@@ -78,7 +78,7 @@ namespace TuroPhoto.PhotoLibraryCatalog
                 })
                 // TBD: Why AddLogging needs to be before this line?
                 .AddEntityFrameworkSqlServer()
-                .AddDbContext<AlbumIndexContext>(options =>
+                .AddDbContext<TuroPhotoContext>(options =>
                 {
                     options.UseSqlServer(config["ConnectionString"],
                         sqlOptions => sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().
@@ -86,7 +86,7 @@ namespace TuroPhoto.PhotoLibraryCatalog
                 }, ServiceLifetime.Scoped) // Note that Scoped is the default choice
                                            // in AddDbContext. It is shown here only for
                                            // pedagogic purposes.
-                .AddTransient<IAlbumIndexRepository, AlbumIndexRepository>()
+                .AddTransient<ITuroPhotoRepository, TuroPhotoRepository>()
                 .BuildServiceProvider();
         }
     }
