@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using MetadataExtractor;
-using MetadataExtractor.Formats.Exif;
 using Directory = System.IO.Directory;
 using System.Text.RegularExpressions;
 using TuroPhoto.PhotoLibraryCatalog.Model;
 using TuroPhoto.PhotoLibraryCatalog.Model.Interfaces;
 using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Infrastructure.File
+namespace TuroPhoto.PhotoLibraryCatalog.Service.File
 {
     class PhotoLibraryCrawler : IPhotoLibraryCrawler
     {

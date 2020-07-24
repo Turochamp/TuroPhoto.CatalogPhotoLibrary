@@ -3,7 +3,7 @@ using TuroPhoto.PhotoLibraryCatalog.Model;
 using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 using TuroPhoto.PhotoLibraryCatalog.Model.Interfaces;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Infrastructure.File
+namespace TuroPhoto.PhotoLibraryCatalog.Service.File
 {
     internal interface IPhotoLibraryCrawler
     {

@@ -38,7 +38,7 @@ namespace TuroPhoto.PhotoLibraryCatalog.View
             Logger.LogInformation(message);
         }
 
-        internal void HandleException(Exception exception, string message)
+        public void HandleException(Exception exception, string message)
         {
             Logger.LogError(exception, message);
         }

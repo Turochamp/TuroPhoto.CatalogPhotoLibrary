@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TuroPhoto.PhotoLibraryCatalog.Model;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Infrastructure.Repository
+namespace TuroPhoto.PhotoLibraryCatalog.Data
 {
     // TODO: Add schema
     class TuroPhotoContext : DbContext

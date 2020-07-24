@@ -2,7 +2,7 @@
 using System;
 using TuroPhoto.PhotoLibraryCatalog.Model;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Infrastructure.Repository
+namespace TuroPhoto.PhotoLibraryCatalog.Data
 {
     class TuroPhotoRepository : ITuroPhotoRepository, IDisposable
     {
@@ -57,6 +57,5 @@ namespace TuroPhoto.PhotoLibraryCatalog.Infrastructure.Repository
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }

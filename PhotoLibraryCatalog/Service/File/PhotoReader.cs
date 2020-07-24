@@ -5,7 +5,7 @@ using MetadataExtractor.Formats.Exif;
 using TuroPhoto.PhotoLibraryCatalog.Model;
 using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Infrastructure.File
+namespace TuroPhoto.PhotoLibraryCatalog.Service.File
 {
     // TODO: Fix security vulnerability
     class PhotoReader : IPhotoReader

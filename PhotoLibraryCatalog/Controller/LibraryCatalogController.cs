@@ -1,29 +1,22 @@
-using TuroPhoto.PhotoLibraryCatalog.Infrastructure.File;
-using TuroPhoto.PhotoLibraryCatalog.Infrastructure.Repository;
-using TuroPhoto.PhotoLibraryCatalog.Model;
+using System;
+using TuroPhoto.PhotoLibraryCatalog.Service;
 using TuroPhoto.PhotoLibraryCatalog.View;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Controller
 {
     // TODO: Make crawler and repository execute directories in parallel. Feasable?
-    // TODO: Add IDispose
+    // x TODO: Add IDispose
     // TODO: Refactor View into more suitable model for console. What's more suitable?
     class LibraryCatalogController
     {
         public Configuration Configuration { get; set; }
 
         private readonly LibraryCatalogView _view;
-        private readonly IPhotoLibraryCrawler _photoDirectoryCrawler;
-        private readonly ITuroPhotoRepository _repository;
 
         public LibraryCatalogController(
-            LibraryCatalogView view,
-            IPhotoLibraryCrawler photoDirectoryCrawler,
-            ITuroPhotoRepository repository)
+            LibraryCatalogView view)
         {
             _view = view;
-            _photoDirectoryCrawler = photoDirectoryCrawler;
-            _repository = repository;
         }
 
         public void InitConfiguration(string[] directoryPaths)
@@ -36,45 +29,15 @@ namespace TuroPhoto.PhotoLibraryCatalog.Controller
         public void Run()
         {
             Starting();
-
             foreach (var directoryPath in Configuration.DirectoryPaths)
             {
-                RunDirectory(directoryPath);
+                using (var service = Program.GetRequiredService<ICatalogLibraryService>())
+                {
+                    service.CreateLibraryCatalog(Configuration.ComputerName, directoryPath, _view);
+                }
             }
 
-            // Output results
             Closing();
-        }
-
-        private void RunDirectory(string directoryPath)
-        {
-            // Find all photos. Does not read metadata.
-            var (photosRead, readErrors) = _photoDirectoryCrawler.FindPhotos(
-                directoryPath, _view, true);
-            _view.HandleMessage($"\n{photosRead.Count} photos in source directory ({readErrors.Count} errors)");
-
-            // TBD: Handle read errors?
-
-            // Create catalog index with metadata
-            var catalog = new LibraryCatalog(Configuration.ComputerName, directoryPath, photosRead);
-            catalog.Init();
-
-            // Persist to database
-            _repository.Insert(catalog);
-            _view.HandleMessage($"\nPrepared saving CatalogLibrary ({catalog.Directories.Count} directories, {catalog.Photos.Count} photos)");
-
-            // Catch exception thrown by EF Core
-            var exception = _repository.TrySave();
-
-            var message = "Saved CatalogLibrary";
-            if (exception != null)
-            {
-                _view.HandleException(exception, message);
-            }
-            else
-            {
-                _view.HandleMessage(message);
-            }
         }
 
         private void Closing()

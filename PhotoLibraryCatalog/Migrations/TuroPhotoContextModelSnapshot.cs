@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TuroPhoto.PhotoLibraryCatalog.Infrastructure.Repository;
+using TuroPhoto.PhotoLibraryCatalog.Data;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Migrations
 {

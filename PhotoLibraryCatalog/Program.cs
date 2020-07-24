@@ -8,15 +8,16 @@ using System;
 using System.Linq;
 using System.Reflection;
 using TuroPhoto.PhotoLibraryCatalog.Controller;
-using TuroPhoto.PhotoLibraryCatalog.Infrastructure.File;
-using TuroPhoto.PhotoLibraryCatalog.Infrastructure.Repository;
+using TuroPhoto.PhotoLibraryCatalog.Data;
+using TuroPhoto.PhotoLibraryCatalog.Service;
+using TuroPhoto.PhotoLibraryCatalog.Service.File;
 using TuroPhoto.PhotoLibraryCatalog.View;
 
 namespace TuroPhoto.PhotoLibraryCatalog
 {
     // x TODO: Add log rotation
     // TODO: Add input validation
-    // TODO: DAL and Service instead of Infrastructure (inspiration from MS book microservice ddd cqrs patterns)? Move to own projects.
+    // x TODO: DAL and Service instead of Infrastructure (inspiration from MS book microservice ddd cqrs patterns)? Move to own projects.
     // x TODO: Move to namespace TuroPhoto.PhotoLibraryCatalog
     // TODO: Make Configuration IoC instance. Adding all configuration to it.
     // TODO: Compile to exe. Executable TuroPhoto, which will be later expanded with more commands. 
@@ -37,17 +38,15 @@ namespace TuroPhoto.PhotoLibraryCatalog
                     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                     .Build();
 
-                var servicesProvider = BuildDi(config);
-                using (servicesProvider as IDisposable)
+                _serviceProvider = BuildDi(config);
+                using (_serviceProvider as IDisposable)
                 {
-                    var runner = servicesProvider.GetRequiredService<LibraryCatalogController>();
+                    var controller = GetRequiredService<LibraryCatalogController>();
+                    controller.InitConfiguration(directories);
 
-                    runner.InitConfiguration(directories);
+                    logger.SetProperty("Version", controller.Configuration.Version);
 
-                    logger.SetProperty("Version", runner.Configuration.Version);
-
-                    // TODO: Move directories loop here
-                    runner.Run();
+                    controller.Run();
                 }
             }
             catch (Exception exception)
@@ -68,6 +67,7 @@ namespace TuroPhoto.PhotoLibraryCatalog
             return new ServiceCollection()
                 .AddTransient<LibraryCatalogController>() // Runner is the custom class
                 .AddTransient<LibraryCatalogView>()
+                .AddTransient<ICatalogLibraryService, CatalogLibraryService>()
                 .AddTransient<IPhotoLibraryCrawler, PhotoLibraryCrawler>()
                 .AddLogging(loggingBuilder =>
                 {
@@ -89,5 +89,12 @@ namespace TuroPhoto.PhotoLibraryCatalog
                 .AddTransient<ITuroPhotoRepository, TuroPhotoRepository>()
                 .BuildServiceProvider();
         }
+
+        private static IServiceProvider _serviceProvider;
+        public static T GetRequiredService<T>()
+        {
+            return _serviceProvider.GetRequiredService<T>();
+        }
+
     }
 }
