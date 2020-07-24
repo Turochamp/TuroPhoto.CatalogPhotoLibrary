@@ -14,7 +14,8 @@ using TuroPhoto.PhotoLibraryCatalog.View;
 
 namespace TuroPhoto.PhotoLibraryCatalog
 {
-    // TODO: Add log rotation
+    // x TODO: Add log rotation
+    // TODO: Add input validation
     // TODO: DAL and Service instead of Infrastructure (inspiration from MS book microservice ddd cqrs patterns)? Move to own projects.
     // x TODO: Move to namespace TuroPhoto.PhotoLibraryCatalog
     // TODO: Make Configuration IoC instance. Adding all configuration to it.
