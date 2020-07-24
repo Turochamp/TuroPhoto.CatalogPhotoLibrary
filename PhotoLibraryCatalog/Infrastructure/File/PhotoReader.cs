@@ -7,6 +7,7 @@ using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Infrastructure.File
 {
+    // TODO: Fix security vulnerability
     class PhotoReader : IPhotoReader
     {
         public (Photo, ImportError) ReadPhoto(string filePath, bool readMetaData, bool readDateTimeFromFile)

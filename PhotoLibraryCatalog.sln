@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.30317.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoLibraryCatalog", "PhotoLibraryCatalog\PhotoLibraryCatalog.csproj", "{BDFABFA0-7334-4575-B64F-8FB43F472F0E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{16AC3EB6-44BD-486C-A6B6-4313922E2980}"
+	ProjectSection(SolutionItems) = preProject
+		AlbumIndex1\Coding Notes.txt = AlbumIndex1\Coding Notes.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

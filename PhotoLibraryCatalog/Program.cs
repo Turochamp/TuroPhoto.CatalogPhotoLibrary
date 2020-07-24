@@ -15,10 +15,10 @@ using TuroPhoto.PhotoLibraryCatalog.View;
 namespace TuroPhoto.PhotoLibraryCatalog
 {
     // TODO: Add log rotation
-    // TODO: DAL and Service instead of Infrastructure? Move to own projects.
+    // TODO: DAL and Service instead of Infrastructure (inspiration from MS book microservice ddd cqrs patterns)? Move to own projects.
     // x TODO: Move to namespace TuroPhoto.PhotoLibraryCatalog
     // TODO: Make Configuration IoC instance. Adding all configuration to it.
-    // TODO: Compile to exe (executable TuroCPL) 
+    // TODO: Compile to exe. Executable TuroPhoto, which will be later expanded with more commands. 
     // TODO: Create UT and IT. IT should use InMemoryDB.
     // TODO: Switch to .Net 5.0
     // TODO: Move common TuroPhoto code to nuget package(s)
