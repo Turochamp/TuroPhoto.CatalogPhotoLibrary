@@ -2,21 +2,20 @@
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model
 {
-    internal class Directory
+    internal class LibraryCatalogDirectory
     {
-        public Directory(string path) : this()
+        public int Id { get; }
+        public string Path { get; }
+        public List<Photo> Photos { get; private set; }
+        public string RelativePath { get; internal set; }
+
+        public LibraryCatalogDirectory(string path) : this()
         {
             Path = path;
             Photos = new List<Photo>();
         }
 
-        public Directory() { }
-
-
-        public int Id { get; }
-        public string Path { get; }
-        public List<Photo> Photos { get; private set; }
-        public string RelativePath { get; internal set; }
+        public LibraryCatalogDirectory() { }
 
         internal void Add(Photo photo)
         {

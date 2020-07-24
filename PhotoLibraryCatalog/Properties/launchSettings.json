@@ -2,7 +2,7 @@
   "profiles": {
     "PhotoLibraryCatalog": {
       "commandName": "Project",
-      "commandLineArgs": "--directories \"C:\\Shared\\Photos\" \"C:\\Temp\\Pictures (duplicates)\""
+      "commandLineArgs": "--directories \"C:\\Temp\\Pictures (duplicates)\" \"C:\\Shared\\Photos\""
     }
   }
 }

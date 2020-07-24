@@ -1,11 +1,18 @@
-USE AlbumIndex1
+USE TuroPhoto1
 
-SELECT COUNT(*) FROM AlbumIndex
 SELECT 
-	ai.DirectoryPath, COUNT(*) 
+	COUNT(*),
+	MIN(Created) AS 'MinCreated',
+	MAX(Created) AS 'MaxCreated'
+FROM LibraryCatalogs
+
+
+SELECT 
+	ai.DirectoryPath, 
+	COUNT(*) AS 'Count'
 FROM 
-	Directories d JOIN 
-	AlbumIndex ai ON d.AlbumIndexId = ai.Id
+	LibraryCatalogDirectories d JOIN 
+	LibraryCatalogs ai ON d.LibraryCatalogId = ai.Id
 GROUP BY
 	ai.DirectoryPath
 
@@ -16,6 +23,6 @@ SELECT
 	COUNT(*) AS 'Count'
 FROM 
 	Photos p JOIN 
-	AlbumIndex ai ON p.AlbumIndexId = ai.Id
+	LibraryCatalogs ai ON p.LibraryCatalogId = ai.Id
 GROUP BY
 	ai.DirectoryPath

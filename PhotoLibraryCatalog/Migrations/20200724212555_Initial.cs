@@ -1,14 +1,14 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Turochamp.Photo.Migrations
+namespace TuroPhoto.PhotoLibraryCatalog.Migrations
 {
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AlbumIndex",
+                name: "LibraryCatalog",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -19,83 +19,84 @@ namespace Turochamp.Photo.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AlbumIndex", x => x.Id);
+                    table.PrimaryKey("PK_LibraryCatalog", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Directories",
+                name: "LibraryCatalogDirectory",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Path = table.Column<string>(nullable: true),
-                    AlbumIndexId = table.Column<int>(nullable: true)
+                    LibraryCatalogId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Directories", x => x.Id);
+                    table.PrimaryKey("PK_LibraryCatalogDirectory", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Directories_AlbumIndex_AlbumIndexId",
-                        column: x => x.AlbumIndexId,
-                        principalTable: "AlbumIndex",
+                        name: "FK_LibraryCatalogDirectory_LibraryCatalog_LibraryCatalogId",
+                        column: x => x.LibraryCatalogId,
+                        principalTable: "LibraryCatalog",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Photos",
+                name: "Photo",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FilePath = table.Column<string>(nullable: true),
+                    FileName = table.Column<string>(nullable: true),
+                    DateTimeFromMetaData = table.Column<DateTime>(nullable: true),
                     DateTimeFromFile = table.Column<DateTime>(nullable: false),
-                    AlbumIndexId = table.Column<int>(nullable: true),
-                    DirectoryId = table.Column<int>(nullable: true)
+                    LibraryCatalogDirectoryId = table.Column<int>(nullable: true),
+                    LibraryCatalogId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Photos", x => x.Id);
+                    table.PrimaryKey("PK_Photo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Photos_AlbumIndex_AlbumIndexId",
-                        column: x => x.AlbumIndexId,
-                        principalTable: "AlbumIndex",
+                        name: "FK_Photo_LibraryCatalogDirectory_LibraryCatalogDirectoryId",
+                        column: x => x.LibraryCatalogDirectoryId,
+                        principalTable: "LibraryCatalogDirectory",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Photos_Directories_DirectoryId",
-                        column: x => x.DirectoryId,
-                        principalTable: "Directories",
+                        name: "FK_Photo_LibraryCatalog_LibraryCatalogId",
+                        column: x => x.LibraryCatalogId,
+                        principalTable: "LibraryCatalog",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Directories_AlbumIndexId",
-                table: "Directories",
-                column: "AlbumIndexId");
+                name: "IX_LibraryCatalogDirectory_LibraryCatalogId",
+                table: "LibraryCatalogDirectory",
+                column: "LibraryCatalogId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Photos_AlbumIndexId",
-                table: "Photos",
-                column: "AlbumIndexId");
+                name: "IX_Photo_LibraryCatalogDirectoryId",
+                table: "Photo",
+                column: "LibraryCatalogDirectoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Photos_DirectoryId",
-                table: "Photos",
-                column: "DirectoryId");
+                name: "IX_Photo_LibraryCatalogId",
+                table: "Photo",
+                column: "LibraryCatalogId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Photos");
+                name: "Photo");
 
             migrationBuilder.DropTable(
-                name: "Directories");
+                name: "LibraryCatalogDirectory");
 
             migrationBuilder.DropTable(
-                name: "AlbumIndex");
+                name: "LibraryCatalog");
         }
     }
 }

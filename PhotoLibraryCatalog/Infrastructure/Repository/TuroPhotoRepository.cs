@@ -4,20 +4,20 @@ using TuroPhoto.PhotoLibraryCatalog.Model;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Infrastructure.Repository
 {
-    class AlbumIndexRepository : IAlbumIndexRepository, IDisposable
+    class TuroPhotoRepository : ITuroPhotoRepository, IDisposable
     {
-        private readonly AlbumIndexContext _context;
-        private readonly ILogger<AlbumIndexRepository> _logger;
+        private readonly TuroPhotoContext _context;
+        private readonly ILogger<TuroPhotoRepository> _logger;
 
-        public AlbumIndexRepository(AlbumIndexContext context, ILogger<AlbumIndexRepository> logger)
+        public TuroPhotoRepository(TuroPhotoContext context, ILogger<TuroPhotoRepository> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        public void Insert(AlbumIndex albumIndex)
+        public void Insert(LibraryCatalog catalog)
         {
-            _context.AlbumIndex.Add(albumIndex);
+            _context.LibraryCatalogs.Add(catalog);
         }
 
         public void Save()

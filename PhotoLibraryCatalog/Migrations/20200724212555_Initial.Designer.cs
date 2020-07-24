@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TuroPhoto.PhotoLibraryCatalog.Infrastructure.Repository;
 
-namespace Turochamp.Photo.Migrations
+namespace TuroPhoto.PhotoLibraryCatalog.Migrations
 {
-    [DbContext(typeof(AlbumIndexContext))]
-    partial class AlbumIndexContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(TuroPhotoContext))]
+    [Migration("20200724212555_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace Turochamp.Photo.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Turochamp.Photo.Model.AlbumIndex", b =>
+            modelBuilder.Entity("TuroPhoto.PhotoLibraryCatalog.Model.LibraryCatalog", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,17 +39,17 @@ namespace Turochamp.Photo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AlbumIndex");
+                    b.ToTable("LibraryCatalog");
                 });
 
-            modelBuilder.Entity("Turochamp.Photo.Model.Directory", b =>
+            modelBuilder.Entity("TuroPhoto.PhotoLibraryCatalog.Model.LibraryCatalogDirectory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AlbumIndexId")
+                    b.Property<int?>("LibraryCatalogId")
                         .HasColumnType("int");
 
                     b.Property<string>("RelativePath")
@@ -56,25 +58,25 @@ namespace Turochamp.Photo.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AlbumIndexId");
+                    b.HasIndex("LibraryCatalogId");
 
-                    b.ToTable("Directories");
+                    b.ToTable("LibraryCatalogDirectory");
                 });
 
-            modelBuilder.Entity("Turochamp.Photo.Model.Photo", b =>
+            modelBuilder.Entity("TuroPhoto.PhotoLibraryCatalog.Model.Photo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AlbumIndexId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateTimeFromFile")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DirectoryId")
+                    b.Property<int?>("LibraryCatalogDirectoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LibraryCatalogId")
                         .HasColumnType("int");
 
                     b.Property<string>("SourceFileName")
@@ -83,31 +85,31 @@ namespace Turochamp.Photo.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AlbumIndexId");
+                    b.HasIndex("LibraryCatalogDirectoryId");
 
-                    b.HasIndex("DirectoryId");
+                    b.HasIndex("LibraryCatalogId");
 
-                    b.ToTable("Photos");
+                    b.ToTable("Photo");
                 });
 
-            modelBuilder.Entity("Turochamp.Photo.Model.Directory", b =>
+            modelBuilder.Entity("TuroPhoto.PhotoLibraryCatalog.Model.LibraryCatalogDirectory", b =>
                 {
-                    b.HasOne("Turochamp.Photo.Model.AlbumIndex", null)
+                    b.HasOne("TuroPhoto.PhotoLibraryCatalog.Model.LibraryCatalog", null)
                         .WithMany("Directories")
-                        .HasForeignKey("AlbumIndexId");
+                        .HasForeignKey("LibraryCatalogId");
                 });
 
-            modelBuilder.Entity("Turochamp.Photo.Model.Photo", b =>
+            modelBuilder.Entity("TuroPhoto.PhotoLibraryCatalog.Model.Photo", b =>
                 {
-                    b.HasOne("Turochamp.Photo.Model.AlbumIndex", null)
+                    b.HasOne("TuroPhoto.PhotoLibraryCatalog.Model.LibraryCatalogDirectory", null)
                         .WithMany("Photos")
-                        .HasForeignKey("AlbumIndexId");
+                        .HasForeignKey("LibraryCatalogDirectoryId");
 
-                    b.HasOne("Turochamp.Photo.Model.Directory", null)
+                    b.HasOne("TuroPhoto.PhotoLibraryCatalog.Model.LibraryCatalog", null)
                         .WithMany("Photos")
-                        .HasForeignKey("DirectoryId");
+                        .HasForeignKey("LibraryCatalogId");
 
-                    b.OwnsOne("Turochamp.Photo.Model.ImageMetaData", "ImageMetaData", b1 =>
+                    b.OwnsOne("TuroPhoto.PhotoLibraryCatalog.Model.ImageMetaData", "ImageMetaData", b1 =>
                         {
                             b1.Property<int>("PhotoId")
                                 .ValueGeneratedOnAdd()
@@ -120,7 +122,7 @@ namespace Turochamp.Photo.Migrations
 
                             b1.HasKey("PhotoId");
 
-                            b1.ToTable("Photos");
+                            b1.ToTable("Photo");
 
                             b1.WithOwner()
                                 .HasForeignKey("PhotoId");

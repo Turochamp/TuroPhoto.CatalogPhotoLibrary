@@ -8,22 +8,22 @@ namespace TuroPhoto.PhotoLibraryCatalog.Controller
     // TODO: Make crawler and repository execute directories in parallel. Feasable?
     // TODO: Add IDispose
     // TODO: Refactor View into more suitable model for console. What's more suitable?
-    class IndexAlbumController
+    class LibraryCatalogController
     {
         public Configuration Configuration { get; set; }
 
-        private readonly IndexAlbumView _view;
-        private readonly IPhotoDirectoryCrawler _photoDirectoryCrawler;
-        private readonly IAlbumIndexRepository _albumIndexRepository;
+        private readonly LibraryCatalogView _view;
+        private readonly IPhotoLibraryCrawler _photoDirectoryCrawler;
+        private readonly ITuroPhotoRepository _repository;
 
-        public IndexAlbumController(
-            IndexAlbumView view,
-            IPhotoDirectoryCrawler photoDirectoryCrawler,
-            IAlbumIndexRepository albumIndexRepository)
+        public LibraryCatalogController(
+            LibraryCatalogView view,
+            IPhotoLibraryCrawler photoDirectoryCrawler,
+            ITuroPhotoRepository repository)
         {
             _view = view;
             _photoDirectoryCrawler = photoDirectoryCrawler;
-            _albumIndexRepository = albumIndexRepository;
+            _repository = repository;
         }
 
         public void InitConfiguration(string[] directoryPaths)
@@ -55,18 +55,18 @@ namespace TuroPhoto.PhotoLibraryCatalog.Controller
 
             // TBD: Handle read errors?
 
-            // Create album index with metadata
-            var albumIndex = new AlbumIndex(Configuration.ComputerName, directoryPath, photosRead);
-            albumIndex.Init();
+            // Create catalog index with metadata
+            var catalog = new LibraryCatalog(Configuration.ComputerName, directoryPath, photosRead);
+            catalog.Init();
 
             // Persist to database
-            _albumIndexRepository.Insert(albumIndex);
-            _view.HandleMessage($"\nPrepared saving AlbumIndex ({albumIndex.Directories.Count} directories, {albumIndex.Photos.Count} photos)");
+            _repository.Insert(catalog);
+            _view.HandleMessage($"\nPrepared saving CatalogLibrary ({catalog.Directories.Count} directories, {catalog.Photos.Count} photos)");
 
             // Catch exception thrown by EF Core
-            var exception = _albumIndexRepository.TrySave();
+            var exception = _repository.TrySave();
 
-            var message = "Saved AlbumIndex";
+            var message = "Saved CatalogLibrary";
             if (exception != null)
             {
                 _view.HandleException(exception, message);
@@ -86,7 +86,7 @@ namespace TuroPhoto.PhotoLibraryCatalog.Controller
         {
             var settingsMessage =
                 $" Directory Path: {Configuration.Version}\n Computer: {Configuration.ComputerName}";
-            var message = $"AlbumIndexer1 starting up.\n{settingsMessage}.";
+            var message = $"TuroPhoto starting up.\n{settingsMessage}.";
 
             _view.HandleMessage(message);
         }

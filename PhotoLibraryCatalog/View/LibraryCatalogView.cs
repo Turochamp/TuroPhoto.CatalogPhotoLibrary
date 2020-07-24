@@ -7,16 +7,16 @@ using TuroPhoto.PhotoLibraryCatalog.Model.Interfaces;
 
 namespace TuroPhoto.PhotoLibraryCatalog.View
 {
-    class IndexAlbumView : IOutputPort
+    class LibraryCatalogView : IOutputPort
     {
-        public IndexAlbumView(ILogger<IndexAlbumView> logger)
+        public LibraryCatalogView(ILogger<LibraryCatalogView> logger)
         {
             Logger = logger;
         }
 
         private string _handleProgressOperationDescription = null;
 
-        public ILogger<IndexAlbumView> Logger { get; }
+        public ILogger<LibraryCatalogView> Logger { get; }
 
         public void HandleProgress(ProgressReport report)
         {

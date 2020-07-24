@@ -18,6 +18,12 @@
 	  <Compile Remove="Migrations\20200723080028_Test.Designer.cs" />
 	  <Compile Remove="Migrations\20200724084122_SourceFileName.cs" />
 	  <Compile Remove="Migrations\20200724084122_SourceFileName.Designer.cs" />
+	  <Compile Remove="Migrations\20200724205929_Initial.cs" />
+	  <Compile Remove="Migrations\20200724205929_Initial.Designer.cs" />
+	  <Compile Remove="Migrations\20200724210210_Initial.cs" />
+	  <Compile Remove="Migrations\20200724210210_Initial.Designer.cs" />
+	  <Compile Remove="Migrations\20200724212333_Initial.cs" />
+	  <Compile Remove="Migrations\20200724212333_Initial.Designer.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

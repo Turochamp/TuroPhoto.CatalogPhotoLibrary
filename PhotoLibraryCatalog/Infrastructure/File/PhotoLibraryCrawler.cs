@@ -12,13 +12,13 @@ using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Infrastructure.File
 {
-    class PhotoDirectoryCrawler : IPhotoDirectoryCrawler
+    class PhotoLibraryCrawler : IPhotoLibraryCrawler
     {
         private PhotoList _list;
         private IOutputPort _outputPort;
         private List<ImportError> _errorList;
 
-        public PhotoDirectoryCrawler()
+        public PhotoLibraryCrawler()
         {
             PhotoReader = new PhotoReader();
         }
