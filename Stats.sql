@@ -4,15 +4,15 @@ SELECT
 	COUNT(*),
 	MIN(Created) AS 'MinCreated',
 	MAX(Created) AS 'MaxCreated'
-FROM LibraryCatalogs
+FROM LibraryCatalog
 
 
 SELECT 
 	ai.DirectoryPath, 
 	COUNT(*) AS 'Count'
 FROM 
-	LibraryCatalogDirectories d JOIN 
-	LibraryCatalogs ai ON d.LibraryCatalogId = ai.Id
+	LibraryCatalogDirectory d JOIN 
+	LibraryCatalog ai ON d.LibraryCatalogId = ai.Id
 GROUP BY
 	ai.DirectoryPath
 
@@ -22,7 +22,7 @@ SELECT
 	MAX(p.DateTimeFromMetaData) AS 'MaxDateTimeFromMetaData',
 	COUNT(*) AS 'Count'
 FROM 
-	Photos p JOIN 
-	LibraryCatalogs ai ON p.LibraryCatalogId = ai.Id
+	Photo p JOIN 
+	LibraryCatalog ai ON p.LibraryCatalogId = ai.Id
 GROUP BY
 	ai.DirectoryPath

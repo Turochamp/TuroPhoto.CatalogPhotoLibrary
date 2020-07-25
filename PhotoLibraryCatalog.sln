@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoLibraryCatalog", "Phot
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{16AC3EB6-44BD-486C-A6B6-4313922E2980}"
 	ProjectSection(SolutionItems) = preProject
+		Coding Nodes.txt = Coding Nodes.txt
 		AlbumIndex1\Coding Notes.txt = AlbumIndex1\Coding Notes.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL scripts", "SQL scripts", "{860712C3-4AF4-4DCC-ACFC-0283A86B2868}"
+	ProjectSection(SolutionItems) = preProject
+		Find Missing Photos.sql = Find Missing Photos.sql
 		Stats.sql = Stats.sql
 	EndProjectSection
 EndProject

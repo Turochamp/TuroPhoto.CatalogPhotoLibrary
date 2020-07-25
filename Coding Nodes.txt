@@ -1,1 +1,5 @@
+*** Prototype ***
 See AlbumIndex1 for prototyping notes
+
+*** Debugging ***
+--directories "C:\Temp\Pictures (duplicates)" "C:\Shared\Photos" "\\fox\Shared\Pictures" "\\badger\photo"

@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using NLog;
 using NLog.Extensions.Logging;
 using System;
-using System.Linq;
 using System.Reflection;
 using TuroPhoto.PhotoLibraryCatalog.Controller;
 using TuroPhoto.PhotoLibraryCatalog.Data;
@@ -16,12 +15,13 @@ using TuroPhoto.PhotoLibraryCatalog.View;
 namespace TuroPhoto.PhotoLibraryCatalog
 {
     // x TODO: Add log rotation
-    // TODO: Add input validation
     // x TODO: DAL and Service instead of Infrastructure (inspiration from MS book microservice ddd cqrs patterns)? Move to own projects.
     // x TODO: Move to namespace TuroPhoto.PhotoLibraryCatalog
-    // TODO: Make Configuration IoC instance. Adding all configuration to it.
-    // TODO: Compile to exe. Executable TuroPhoto, which will be later expanded with more commands. 
     // TODO: Create UT and IT. IT should use InMemoryDB.
+    // TODO: Make Configuration IoC instance. Adding all configuration to it.
+    // TODO: Add input validation
+    // TODO: Improve console output
+    // TODO: Compile to exe. Executable TuroPhoto, which will be later expanded with more commands, such as "Catalog" and "Sync". 
     // TODO: Switch to .Net 5.0
     // TODO: Move common TuroPhoto code to nuget package(s)
     class Program
@@ -83,7 +83,7 @@ namespace TuroPhoto.PhotoLibraryCatalog
                     options.UseSqlServer(config["ConnectionString"],
                         sqlOptions => sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().
                         Assembly.GetName().Name));
-                }, ServiceLifetime.Scoped) // Note that Scoped is the default choice
+                }, ServiceLifetime.Transient) // Note that Scoped is the default choice
                                            // in AddDbContext. It is shown here only for
                                            // pedagogic purposes.
                 .AddTransient<ITuroPhotoRepository, TuroPhotoRepository>()
