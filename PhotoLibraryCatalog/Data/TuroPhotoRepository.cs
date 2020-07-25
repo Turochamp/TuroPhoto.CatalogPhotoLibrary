@@ -4,6 +4,7 @@ using TuroPhoto.PhotoLibraryCatalog.Model;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Data
 {
+    // TODO: Add progress tracking events
     class TuroPhotoRepository : ITuroPhotoRepository, IDisposable
     {
         private readonly TuroPhotoContext _context;

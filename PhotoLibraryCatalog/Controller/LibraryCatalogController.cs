@@ -4,7 +4,6 @@ using TuroPhoto.PhotoLibraryCatalog.View;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Controller
 {
-    // TODO: Make crawler and repository execute directories in parallel. Feasable?
     // x TODO: Add IDispose
     // TODO: Refactor View into more suitable model for console. What's more suitable?
     class LibraryCatalogController
