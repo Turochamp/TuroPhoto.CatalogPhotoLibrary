@@ -19,6 +19,7 @@ namespace TuroPhoto.PhotoLibraryCatalog
     // x TODO: Move to namespace TuroPhoto.PhotoLibraryCatalog
     // TODO: Create UT and IT. IT should use InMemoryDB.
     // TODO: Make Configuration IoC instance. Adding all configuration to it.
+    // TODO: Add, optional, AppInsight
     // TODO: Add input validation
     // TODO: Improve console output
     // TODO: Compile to exe. Executable TuroPhoto, which will be later expanded with more commands, such as "Catalog" and "Sync". 

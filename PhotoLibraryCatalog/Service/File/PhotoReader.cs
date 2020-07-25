@@ -2,8 +2,8 @@ using System;
 using System.Linq;
 using MetadataExtractor;
 using MetadataExtractor.Formats.Exif;
+using TuroPhoto.PhotoLibraryCatalog.Common.Dto;
 using TuroPhoto.PhotoLibraryCatalog.Model;
-using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Service.File
 {

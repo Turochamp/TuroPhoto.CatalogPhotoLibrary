@@ -1,4 +1,4 @@
-﻿using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
+﻿using TuroPhoto.PhotoLibraryCatalog.Common.Dto;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Service.File
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-using TuroPhoto.PhotoLibraryCatalog.Model.Interfaces;
+using TuroPhoto.PhotoLibraryCatalog.Common.Interface;
 using TuroPhoto.PhotoLibraryCatalog.View;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Service

@@ -5,8 +5,8 @@ using System.Linq;
 using Directory = System.IO.Directory;
 using System.Text.RegularExpressions;
 using TuroPhoto.PhotoLibraryCatalog.Model;
-using TuroPhoto.PhotoLibraryCatalog.Model.Interfaces;
-using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
+using TuroPhoto.PhotoLibraryCatalog.Common.Interface;
+using TuroPhoto.PhotoLibraryCatalog.Common.Dto;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Service.File
 {

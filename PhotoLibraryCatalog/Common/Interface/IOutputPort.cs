@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
+using TuroPhoto.PhotoLibraryCatalog.Common.Dto;
+using TuroPhoto.PhotoLibraryCatalog.Model;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Model.Interfaces
+namespace TuroPhoto.PhotoLibraryCatalog.Common.Interface
 {
     interface IOutputPort
     {

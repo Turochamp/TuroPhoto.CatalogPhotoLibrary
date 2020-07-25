@@ -1,4 +1,4 @@
-﻿namespace TuroPhoto.PhotoLibraryCatalog.Model.Dto
+﻿namespace TuroPhoto.PhotoLibraryCatalog.Common.Dto
 {
     enum PhotoPathType
     {
