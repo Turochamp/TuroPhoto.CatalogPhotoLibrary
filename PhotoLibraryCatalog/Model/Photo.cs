@@ -5,7 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using TuroPhoto.PhotoLibraryCatalog.Common.Dto;
+using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model
 {

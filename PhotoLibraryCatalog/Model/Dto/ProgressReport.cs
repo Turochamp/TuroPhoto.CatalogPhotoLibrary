@@ -1,4 +1,4 @@
-﻿namespace TuroPhoto.PhotoLibraryCatalog.Common.Dto
+﻿namespace TuroPhoto.PhotoLibraryCatalog.Model.Dto
 {
     class ProgressReport
     {

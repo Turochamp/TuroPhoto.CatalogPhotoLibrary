@@ -1,16 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using NLog;
-using NLog.Extensions.Logging;
 using System;
-using System.Reflection;
 using TuroPhoto.PhotoLibraryCatalog.Controller;
-using TuroPhoto.PhotoLibraryCatalog.Data;
-using TuroPhoto.PhotoLibraryCatalog.Service;
-using TuroPhoto.PhotoLibraryCatalog.Service.File;
-using TuroPhoto.PhotoLibraryCatalog.View;
 
 namespace TuroPhoto.PhotoLibraryCatalog
 {
@@ -20,10 +12,13 @@ namespace TuroPhoto.PhotoLibraryCatalog
     // TODO: Create UT and IT. IT should use InMemoryDB.
     // TODO: Make Configuration IoC instance. Adding all configuration to it.
     // TODO: Add, optional, AppInsight
-    // TODO: Add input validation
+    // TODO: Add, optional, File Content comparision (such as CRC)
+    // TODO: Add readme.md
     // TODO: Improve console output
-    // TODO: Compile to exe. Executable TuroPhoto, which will be later expanded with more commands, such as "Catalog" and "Sync". 
+    // TODO: Add input validation
+    // TODO: Compile to exe. Executable TuroPhoto, which will be later expanded with more commands, such as "Catalog" and "Sync".
     // TODO: Switch to .Net 5.0
+    // TODO: Add Architectural fitness functions
     // TODO: Move common TuroPhoto code to nuget package(s)
     class Program
     {
@@ -39,11 +34,12 @@ namespace TuroPhoto.PhotoLibraryCatalog
                     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                     .Build();
 
-                _serviceProvider = BuildDi(config);
-                using (_serviceProvider as IDisposable)
+                var serviceProvider = DependencyInjectionProvider.BuildDi(config); // TBD: Make into constructor
+                using (serviceProvider as IDisposable)
                 {
-                    var controller = GetRequiredService<LibraryCatalogController>();
+                    var controller = serviceProvider.GetRequiredService<LibraryCatalogController>();
                     controller.InitConfiguration(directories);
+                    // TBD: controller.DependencyInjectionProvider = serviceProvider
 
                     logger.SetProperty("Version", controller.Configuration.Version);
 
@@ -62,40 +58,5 @@ namespace TuroPhoto.PhotoLibraryCatalog
                 LogManager.Shutdown();
             }
         }
-
-        private static IServiceProvider BuildDi(IConfiguration config)
-        {
-            return new ServiceCollection()
-                .AddTransient<LibraryCatalogController>() // Runner is the custom class
-                .AddTransient<LibraryCatalogView>()
-                .AddTransient<ICatalogLibraryService, CatalogLibraryService>()
-                .AddTransient<IPhotoLibraryCrawler, PhotoLibraryCrawler>()
-                .AddLogging(loggingBuilder =>
-                {
-                    // configure Logging with NLog
-                    loggingBuilder.ClearProviders();
-                    loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
-                    loggingBuilder.AddNLog(config);
-                })
-                // TBD: Why AddLogging needs to be before this line?
-                .AddEntityFrameworkSqlServer()
-                .AddDbContext<TuroPhotoContext>(options =>
-                {
-                    options.UseSqlServer(config["ConnectionString"],
-                        sqlOptions => sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().
-                        Assembly.GetName().Name));
-                }, ServiceLifetime.Transient) // Note that Scoped is the default choice
-                                           // in AddDbContext. It is shown here only for
-                                           // pedagogic purposes.
-                .AddTransient<ITuroPhotoRepository, TuroPhotoRepository>()
-                .BuildServiceProvider();
-        }
-
-        private static IServiceProvider _serviceProvider;
-        public static T GetRequiredService<T>()
-        {
-            return _serviceProvider.GetRequiredService<T>();
-        }
-
     }
 }

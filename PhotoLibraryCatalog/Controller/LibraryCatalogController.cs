@@ -1,5 +1,4 @@
-using System;
-using TuroPhoto.PhotoLibraryCatalog.Service;
+using TuroPhoto.PhotoLibraryCatalog.Model.Service;
 using TuroPhoto.PhotoLibraryCatalog.View;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Controller
@@ -30,7 +29,7 @@ namespace TuroPhoto.PhotoLibraryCatalog.Controller
             Starting();
             foreach (var directoryPath in Configuration.DirectoryPaths)
             {
-                using (var service = Program.GetRequiredService<ICatalogLibraryService>())
+                using (var service = DependencyInjectionProvider.GetRequiredService<ICatalogLibraryService>())
                 {
                     service.CreateLibraryCatalog(Configuration.ComputerName, directoryPath, _view);
                 }
@@ -41,7 +40,7 @@ namespace TuroPhoto.PhotoLibraryCatalog.Controller
 
         private void Closing()
         {
-            _view.HandleMessage("Closing TBD");
+            _view.HandleMessage("Cataloging finished (Catalogs: TBD, Directories: TBD, Photos: TBD)");
         }
 
         private void Starting()

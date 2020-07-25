@@ -2,10 +2,9 @@ using System;
 using System.Linq;
 using MetadataExtractor;
 using MetadataExtractor.Formats.Exif;
-using TuroPhoto.PhotoLibraryCatalog.Common.Dto;
-using TuroPhoto.PhotoLibraryCatalog.Model;
+using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Service.File
+namespace TuroPhoto.PhotoLibraryCatalog.Model.Service
 {
     // TODO: Fix security vulnerability
     class PhotoReader : IPhotoReader
@@ -62,7 +61,7 @@ namespace TuroPhoto.PhotoLibraryCatalog.Service.File
 
             var gpsDirectory = directories.FirstOrDefault(d => d.Name == "GPS");
             imd.GpsTags = gpsDirectory?.Tags
-                .Select(x => new Model.Tag(x.Name, x.Description))
+                .Select(x => new Tag(x.Name, x.Description))
                 .ToList();
 
             var gpsLocation = directories
@@ -72,7 +71,7 @@ namespace TuroPhoto.PhotoLibraryCatalog.Service.File
             var geoLocation = gpsLocation?.GetGeoLocation();
             if (geoLocation != null)
             {
-                imd.GeoLocation = new Model.GeoLocation(geoLocation.Latitude, geoLocation.Longitude);
+                imd.GeoLocation = new GeoLocation(geoLocation.Latitude, geoLocation.Longitude);
             }
 
             return imd;

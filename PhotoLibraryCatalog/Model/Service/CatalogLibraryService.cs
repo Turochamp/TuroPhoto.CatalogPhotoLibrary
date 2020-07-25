@@ -1,10 +1,8 @@
 ﻿using System;
-using TuroPhoto.PhotoLibraryCatalog.Common.Interface;
 using TuroPhoto.PhotoLibraryCatalog.Data;
-using TuroPhoto.PhotoLibraryCatalog.Model;
-using TuroPhoto.PhotoLibraryCatalog.Service.File;
+using TuroPhoto.PhotoLibraryCatalog.Model.Interface;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Service
+namespace TuroPhoto.PhotoLibraryCatalog.Model.Service
 {
     // TODO: Optimize insert by making Context read only
     // TODO: Make crawler and repository execute directories in parallel. Feasible?
@@ -13,7 +11,7 @@ namespace TuroPhoto.PhotoLibraryCatalog.Service
         private readonly IPhotoLibraryCrawler _photoDirectoryCrawler;
         private readonly ITuroPhotoRepository _repository;
 
-        public CatalogLibraryService(            
+        public CatalogLibraryService(
             IPhotoLibraryCrawler photoDirectoryCrawler,
             ITuroPhotoRepository repository)
         {

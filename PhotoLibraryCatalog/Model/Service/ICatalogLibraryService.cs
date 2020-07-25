@@ -1,8 +1,7 @@
 ﻿using System;
-using TuroPhoto.PhotoLibraryCatalog.Common.Interface;
-using TuroPhoto.PhotoLibraryCatalog.View;
+using TuroPhoto.PhotoLibraryCatalog.Model.Interface;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Service
+namespace TuroPhoto.PhotoLibraryCatalog.Model.Service
 {
     interface ICatalogLibraryService : IDisposable
     {

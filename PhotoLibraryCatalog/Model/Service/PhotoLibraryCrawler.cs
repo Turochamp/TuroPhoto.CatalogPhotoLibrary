@@ -5,10 +5,10 @@ using System.Linq;
 using Directory = System.IO.Directory;
 using System.Text.RegularExpressions;
 using TuroPhoto.PhotoLibraryCatalog.Model;
-using TuroPhoto.PhotoLibraryCatalog.Common.Interface;
-using TuroPhoto.PhotoLibraryCatalog.Common.Dto;
+using TuroPhoto.PhotoLibraryCatalog.Model.Interface;
+using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Service.File
+namespace TuroPhoto.PhotoLibraryCatalog.Model.Service
 {
     class PhotoLibraryCrawler : IPhotoLibraryCrawler
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using TuroPhoto.PhotoLibraryCatalog.Common.Dto;
-using TuroPhoto.PhotoLibraryCatalog.Common.Interface;
 using TuroPhoto.PhotoLibraryCatalog.Model;
+using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
+using TuroPhoto.PhotoLibraryCatalog.Model.Interface;
 
-namespace TuroPhoto.PhotoLibraryCatalog.Service.File
+namespace TuroPhoto.PhotoLibraryCatalog.Model.Service
 {
     internal interface IPhotoLibraryCrawler
     {
