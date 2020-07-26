@@ -3,7 +3,7 @@
 namespace TuroPhoto.PhotoLibraryCatalog.Model
 {
     // Code from https://stackoverflow.com/questions/6151625/should-i-use-a-struct-or-a-class-to-represent-a-lat-lng-coordinate
-    struct GeoLocation : IEquatable<GeoLocation>
+    public struct GeoLocation : IEquatable<GeoLocation>
     {
         public double Latitude { get; }
         public double Longitude { get; }

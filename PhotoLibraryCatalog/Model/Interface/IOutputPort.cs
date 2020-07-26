@@ -5,7 +5,7 @@ using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model.Interface
 {
-    interface IOutputPort
+    public interface IOutputPort
     {
         void TrackHandleTelemetry(PhotoList list, List<ImportError> errorList, string v);
         void HandleProgress(ProgressReport progressReport);

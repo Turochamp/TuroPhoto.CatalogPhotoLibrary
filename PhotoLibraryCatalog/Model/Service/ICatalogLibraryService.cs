@@ -3,8 +3,9 @@ using TuroPhoto.PhotoLibraryCatalog.Model.Interface;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model.Service
 {
-    interface ICatalogLibraryService : IDisposable
+    public interface ICatalogLibraryService : IDisposable
     {
-        void CreateLibraryCatalog(string computerName, string directoryPath, IOutputPort outputPort);
+        LibraryCatalog CreateLibraryCatalog(string computerName, string directoryPath, IOutputPort outputPort);
+        void SaveLibraryCatalog(LibraryCatalog catalog, IOutputPort outputPort);
     }
 }

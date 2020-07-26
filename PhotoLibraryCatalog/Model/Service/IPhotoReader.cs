@@ -2,7 +2,7 @@
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model.Service
 {
-    interface IPhotoReader
+    public interface IPhotoReader
     {
         (Photo, ImportError) ReadPhoto(string filePath, bool readMetaData, bool readDateTimeFromFile);
         void ReadMetaData(Photo photo);

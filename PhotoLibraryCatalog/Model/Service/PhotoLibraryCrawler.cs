@@ -10,7 +10,7 @@ using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model.Service
 {
-    class PhotoLibraryCrawler : IPhotoLibraryCrawler
+    public class PhotoLibraryCrawler : IPhotoLibraryCrawler
     {
         private PhotoList _list;
         private IOutputPort _outputPort;
@@ -70,6 +70,7 @@ namespace TuroPhoto.PhotoLibraryCatalog.Model.Service
             }
 
             // Filter to only include photos (and videos)
+            // TODO: Replace magical strings with crawler recognized extensions settings
             var photoRegex = new Regex(@".*\.(gif|jpe?g|bmp|png|vmv)$", RegexOptions.IgnoreCase);
             var videoRegex = new Regex(@".*\.(mov|mpe?g|mp4|avi)$", RegexOptions.IgnoreCase);
             var pathsOfDirectoryPhotos = pathsOfDirectoryFiles

@@ -1,6 +1,6 @@
 ﻿namespace TuroPhoto.PhotoLibraryCatalog.Model.Dto
 {
-    class ProgressReport
+    public class ProgressReport
     {
         public string OperationDescription { get; }
         public int? ProgressCount { get; }

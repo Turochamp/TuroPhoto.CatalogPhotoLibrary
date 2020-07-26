@@ -1,12 +1,12 @@
 ﻿namespace TuroPhoto.PhotoLibraryCatalog.Model.Dto
 {
-    enum PhotoPathType
+    public enum PhotoPathType
     {
         Source,
         Library
     }
 
-    class PhotoPath
+    public class PhotoPath
     {
         public PhotoPath(PhotoPathType type, string path)
         {

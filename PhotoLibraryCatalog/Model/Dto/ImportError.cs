@@ -3,7 +3,7 @@ using System.IO;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model.Dto
 {
-    enum ImportErrorType
+    public enum ImportErrorType
     {
         MissingDateTime,
         FileAlreadyExits,
@@ -11,7 +11,7 @@ namespace TuroPhoto.PhotoLibraryCatalog.Model.Dto
         Read
     }
 
-    class ImportError
+    public class ImportError
     {
         public Exception Exception { get; }
         public ImportErrorType ErrorType { get; }

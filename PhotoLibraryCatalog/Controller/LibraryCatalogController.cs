@@ -29,10 +29,9 @@ namespace TuroPhoto.PhotoLibraryCatalog.Controller
             Starting();
             foreach (var directoryPath in Configuration.DirectoryPaths)
             {
-                using (var service = DependencyInjectionProvider.GetRequiredService<ICatalogLibraryService>())
-                {
-                    service.CreateLibraryCatalog(Configuration.ComputerName, directoryPath, _view);
-                }
+                using var service = DependencyInjectionProvider.GetRequiredService<ICatalogLibraryService>();
+                var catalog = service.CreateLibraryCatalog(Configuration.ComputerName, directoryPath, _view);
+                service.SaveLibraryCatalog(catalog, _view);
             }
 
             Closing();

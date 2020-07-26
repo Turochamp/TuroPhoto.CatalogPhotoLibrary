@@ -2,7 +2,7 @@
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model
 {
-    internal class LibraryCatalogDirectory
+    public class LibraryCatalogDirectory
     {
         public int Id { get; }
         public string Path { get; }

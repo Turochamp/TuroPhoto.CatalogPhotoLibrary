@@ -5,7 +5,8 @@ using System.Linq;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model
 {
-    internal class LibraryCatalog
+    #pragma warning disable IDE0044 // Add readonly modifier, due to EF
+    public class LibraryCatalog
     {
         private List<Photo> _photos;
         public IReadOnlyCollection<Photo> Photos => _photos;
@@ -57,12 +58,23 @@ namespace TuroPhoto.PhotoLibraryCatalog.Model
             }
         }
 
-        // TODO: Refactor to Model
-        public static string MakeRelative(string filePath, string referencePath)
+        /// <summary>
+        /// Make relative path. Simple implementation 
+        /// </summary>
+        /// <returns>
+        /// Relative path or null if reference path 
+        /// </returns>
+        public static string MakeRelative(string filePath, string directoryPath)
         {
-            var fileUri = new Uri(filePath);
-            var referenceUri = new Uri(referencePath);
-            return Uri.UnescapeDataString(referenceUri.MakeRelativeUri(fileUri).ToString()).Replace('/', Path.DirectorySeparatorChar);
+            var directoryPathWithTrailingDirectorySeparator =
+                directoryPath.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+
+            if (!filePath.StartsWith(directoryPathWithTrailingDirectorySeparator))
+            {
+                throw new ArgumentException($"Cannot make relative path (filePath: {filePath}, directoryPath: {directoryPath})");
+            }
+
+            return filePath.Substring(directoryPathWithTrailingDirectorySeparator.Length);
         }
     }
 }

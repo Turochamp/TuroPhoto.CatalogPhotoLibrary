@@ -9,7 +9,7 @@ using TuroPhoto.PhotoLibraryCatalog.Model.Dto;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model
 {
-    class Photo : IEquatable<Photo>
+    public class Photo : IEquatable<Photo>
     {
         public static Photo Create(string filePath, PhotoPathType pathType = PhotoPathType.Source)
         {

@@ -7,6 +7,10 @@
     <RootNamespace>TuroPhoto.PhotoLibraryCatalog</RootNamespace>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <NoWarn>1591;1701;1702</NoWarn>
+	</PropertyGroup>
+
 	<ItemGroup>
 	  <Compile Remove="Migrations\20200722072225_Test.cs" />
 	  <Compile Remove="Migrations\20200722072225_Test.Designer.cs" />

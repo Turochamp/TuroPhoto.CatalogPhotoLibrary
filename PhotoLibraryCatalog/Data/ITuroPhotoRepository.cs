@@ -3,7 +3,7 @@ using TuroPhoto.PhotoLibraryCatalog.Model;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Data
 {
-    interface ITuroPhotoRepository
+    public interface ITuroPhotoRepository
     {
         void Insert(LibraryCatalog catalog);
         void Save();

@@ -9,7 +9,8 @@ namespace TuroPhoto.PhotoLibraryCatalog
     // x TODO: Add log rotation
     // x TODO: DAL and Service instead of Infrastructure (inspiration from MS book microservice ddd cqrs patterns)? Move to own projects.
     // x TODO: Move to namespace TuroPhoto.PhotoLibraryCatalog
-    // TODO: Create UT and IT. IT should use InMemoryDB.
+    // TODO: (o) Create UT and IT. IT should use InMemoryDB.
+    // TODO: Add GitHub pipeline (ensuring that emails are received properly)
     // TODO: Make Configuration IoC instance. Adding all configuration to it.
     // TODO: Add, optional, AppInsight
     // TODO: Add, optional, File Content comparision (such as CRC)

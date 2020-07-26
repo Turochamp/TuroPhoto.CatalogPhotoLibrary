@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model
 {
-    class ImageMetaData : IEquatable<ImageMetaData>
+    public class ImageMetaData : IEquatable<ImageMetaData>
     {
         public DateTime? DateTime { get; set; }
 
@@ -38,7 +38,7 @@ namespace TuroPhoto.PhotoLibraryCatalog.Model
         }
     }
 
-    class Tag : IEquatable<Tag>
+    public class Tag : IEquatable<Tag>
     {
         public Tag(string name, string description)
         {

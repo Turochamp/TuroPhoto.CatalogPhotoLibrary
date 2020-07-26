@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model
 {
-    class PhotoList : List<Photo>
+    public class PhotoList : List<Photo>
     {
         public PhotoList() : base()
         {

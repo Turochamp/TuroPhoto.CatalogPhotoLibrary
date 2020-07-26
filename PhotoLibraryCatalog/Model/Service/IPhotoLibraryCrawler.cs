@@ -5,7 +5,7 @@ using TuroPhoto.PhotoLibraryCatalog.Model.Interface;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Model.Service
 {
-    internal interface IPhotoLibraryCrawler
+    public interface IPhotoLibraryCrawler
     {
         (PhotoList, List<ImportError>) FindPhotos(string sourcePath, IOutputPort outputPort, bool readImageMetaData);
     }
