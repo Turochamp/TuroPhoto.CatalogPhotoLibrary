@@ -1,5 +1,10 @@
-*** Prototype ***
-See AlbumIndex1 for prototyping notes
+*** General ***
+Prototype: See AlbumIndex1 for prototyping notes
+
+Supress XML comments warnings
+https://stackoverflow.com/questions/203863/missing-xml-comment-for-publicly-visible-type-or-member
+
+Arrange, Act and Assert (AAA)
 
 *** Debugging ***
 --directories "C:\Temp\Pictures (duplicates)" "C:\Shared\Photos" "\\fox\Shared\Pictures" "\\badger\photo"

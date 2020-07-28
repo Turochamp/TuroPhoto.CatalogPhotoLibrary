@@ -15,12 +15,14 @@ namespace TuroPhoto.PhotoLibraryCatalog
     // TODO: Add, optional, AppInsight
     // TODO: Add, optional, File Content comparision (such as CRC)
     // TODO: Add readme.md
-    // TODO: Improve console output
+    // TODO: Improve console output, including EF progress tracking.
     // TODO: Add input validation
     // TODO: Compile to exe. Executable TuroPhoto, which will be later expanded with more commands, such as "Catalog" and "Sync".
+    //       https://github.com/dotnet/command-line-api/wiki/How-To#Add-a-subcommand
     // TODO: Switch to .Net 5.0
     // TODO: Add Architectural fitness functions
-    // TODO: Move common TuroPhoto code to nuget package(s)
+    // TODO: Move common TuroPhoto code to nuget package(s).
+    //       https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-visual-studio?tabs=netcore-cli
     class Program
     {
         /// <remarks>Uses DragonFruit for typed command arguments.</remarks>

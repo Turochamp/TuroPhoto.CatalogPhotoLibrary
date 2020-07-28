@@ -3,7 +3,8 @@ using TuroPhoto.PhotoLibraryCatalog.Model;
 
 namespace TuroPhoto.PhotoLibraryCatalog.Data
 {
-    // TODO: Add schema
+    // TODO: Add schema. https://docs.microsoft.com/en-us/ef/core/modeling/entity-types?tabs=fluent-api#table-schema
+    // TODO: Move Migrations folder to Data\Migrations
     class TuroPhotoContext : DbContext
     {
         public DbSet<LibraryCatalog> LibraryCatalogs { get; set; }
